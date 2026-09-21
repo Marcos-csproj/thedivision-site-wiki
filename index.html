@@ -1,0 +1,1017 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>The Division - Wiki</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Tema escuro é o padrão; o claro entra quando o visualizador pede */
+        :root {
+            --bg: #0a0e1a;
+            --sidebar-bg: #111827;
+            --card-bg: #1a1f2e;
+            --text: #e5e7eb;
+            --text-soft: #d1d5db;
+            --text-muted: #9ca3af;
+            --text-faint: #6b7280;
+            --accent: #8b5cf6;
+            --accent-light: #a78bfa;
+            --btn: #7c3aed;
+            --border: #2d3748;
+            --scrim: rgba(0, 0, 0, 0.6);
+        }
+
+        @media (prefers-color-scheme: light) {
+            :root:not([data-theme="dark"]) {
+                --bg: #f5f6fb;
+                --sidebar-bg: #ffffff;
+                --card-bg: #ffffff;
+                --text: #1f2937;
+                --text-soft: #374151;
+                --text-muted: #4b5563;
+                --text-faint: #6b7280;
+                --accent: #7c3aed;
+                --accent-light: #6d28d9;
+                --border: #e0e3ee;
+                --scrim: rgba(17, 24, 39, 0.45);
+            }
+        }
+
+        :root[data-theme="light"] {
+            --bg: #f5f6fb;
+            --sidebar-bg: #ffffff;
+            --card-bg: #ffffff;
+            --text: #1f2937;
+            --text-soft: #374151;
+            --text-muted: #4b5563;
+            --text-faint: #6b7280;
+            --accent: #7c3aed;
+            --accent-light: #6d28d9;
+            --border: #e0e3ee;
+            --scrim: rgba(17, 24, 39, 0.45);
+        }
+
+        :root {
+            --logo: url("data:image/png;base64,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");
+        }
+
+        :root {
+            box-sizing: border-box;
+            padding-top: env(safe-area-inset-top, 0px);
+            padding-bottom: env(safe-area-inset-bottom, 0px);
+            background: var(--bg);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: calc(env(safe-area-inset-top, 0px) + 1rem);
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
+            min-height: 100vh;
+        }
+
+        a:focus-visible,
+        button:focus-visible {
+            outline: 2px solid var(--accent-light);
+            outline-offset: 2px;
+        }
+
+        /* Barra superior (só no celular) */
+        .topbar {
+            display: none;
+            position: sticky;
+            top: env(safe-area-inset-top, 0px);
+            z-index: 20;
+            height: 56px;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0 1rem;
+            background: var(--sidebar-bg);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .topbar .brand {
+            flex: 1;
+        }
+
+        .menu-btn {
+            width: 40px;
+            height: 40px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: transparent;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            color: var(--text);
+            cursor: pointer;
+        }
+
+        .menu-btn svg {
+            width: 20px;
+            height: 20px;
+        }
+
+        /* Marca: logo + nome */
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--accent-light);
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-decoration: none;
+        }
+
+        .logo {
+            width: 42px;
+            height: 34px;
+            flex: none;
+            background-color: var(--accent-light);
+            -webkit-mask: var(--logo) center / contain no-repeat;
+            mask: var(--logo) center / contain no-repeat;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 280px;
+            background: var(--sidebar-bg);
+            border-right: 1px solid var(--border);
+            padding: 2rem 0;
+            position: fixed;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            overflow-y: auto;
+            z-index: 30;
+        }
+
+        .sidebar .brand {
+            padding: 0 1.5rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 1rem;
+        }
+
+        .sidebar nav a {
+            display: block;
+            padding: 0.6rem 1.5rem;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: all 0.2s;
+            border-left: 3px solid transparent;
+        }
+
+        .sidebar nav a:hover {
+            color: var(--text);
+            background: rgba(139, 92, 246, 0.1);
+        }
+
+        .sidebar nav a.active {
+            color: var(--accent-light);
+            border-left-color: var(--accent);
+            background: rgba(139, 92, 246, 0.15);
+        }
+
+        .nav-section {
+            padding: 1.5rem 1.5rem 0.5rem;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: var(--text-faint);
+            font-weight: 600;
+        }
+
+        .scrim {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: var(--scrim);
+            z-index: 25;
+        }
+
+        .scrim.show {
+            display: block;
+        }
+
+        /* Conteúdo principal */
+        .main {
+            margin-left: 280px;
+            padding: 3rem 4rem;
+            max-width: 900px;
+        }
+
+        .main h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--accent-light);
+            font-weight: 600;
+        }
+
+        .main h3 {
+            font-size: 1.25rem;
+            margin: 2.5rem 0 1rem;
+            color: var(--text);
+            font-weight: 600;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .main p {
+            margin-bottom: 1rem;
+            color: var(--text-soft);
+        }
+
+        .main ul,
+        .main ol {
+            margin: 0 0 1rem 1.25rem;
+            color: var(--text-soft);
+        }
+
+        .main li {
+            margin-bottom: 0.35rem;
+        }
+
+        .main a.inline {
+            color: var(--accent-light);
+        }
+
+        /* Botões de link */
+        .btn-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin: 1.5rem 0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.6rem 1.1rem;
+            border-radius: 8px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            text-decoration: none;
+            background: var(--btn);
+            color: #fff;
+            border: 1px solid var(--btn);
+            transition: filter 0.2s;
+        }
+
+        .btn:hover {
+            filter: brightness(1.12);
+        }
+
+        .btn.secondary {
+            background: transparent;
+            color: var(--accent-light);
+            border-color: var(--accent);
+        }
+
+        /* Cards */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 1.25rem;
+            margin: 1.5rem 0;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            padding: 1.25rem;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+
+        a.card {
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        a.card:hover {
+            transform: translateY(-3px);
+            border-color: var(--accent);
+        }
+
+        .card h4 {
+            font-size: 1rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent-light);
+        }
+
+        .card p {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin: 0;
+        }
+
+        .card .badge {
+            margin: 0 0 0.75rem;
+        }
+
+        .card.boss p {
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+
+        /* Badge de status */
+        .badge {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            border-radius: 6px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: rgba(139, 92, 246, 0.2);
+            color: var(--accent-light);
+        }
+
+        /* Aviso/Nota */
+        .notice {
+            background: rgba(139, 92, 246, 0.08);
+            border-left: 3px solid var(--accent);
+            padding: 1rem 1.25rem;
+            border-radius: 0 8px 8px 0;
+            margin: 1.5rem 0;
+            font-size: 0.9rem;
+        }
+
+        /* Tabelas */
+        .table-wrap {
+            overflow-x: auto;
+            max-width: 100%;
+            margin: 1.5rem 0;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        .table-wrap table.wide {
+            min-width: 540px;
+        }
+
+        th, td {
+            text-align: left;
+            padding: 0.75rem 1rem;
+            border-bottom: 1px solid var(--border);
+            vertical-align: top;
+        }
+
+        th {
+            color: var(--accent-light);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.5px;
+        }
+
+        td strong {
+            color: var(--text);
+        }
+
+        /* Celular */
+        @media (max-width: 768px) {
+            html {
+                scroll-padding-top: calc(env(safe-area-inset-top, 0px) + 72px);
+            }
+
+            .topbar {
+                display: flex;
+            }
+
+            .sidebar {
+                width: min(300px, 85vw);
+                padding-top: calc(2rem + env(safe-area-inset-top, 0px));
+                transform: translateX(-100%);
+                visibility: hidden;
+                transition: transform 0.25s ease, visibility 0s linear 0.25s;
+            }
+
+            .sidebar.open {
+                transform: none;
+                visibility: visible;
+                transition: transform 0.25s ease;
+            }
+
+            .main {
+                margin-left: 0;
+                max-width: none;
+                padding: 2rem 1.25rem 3rem;
+            }
+
+            .main h2 {
+                font-size: 1.6rem;
+            }
+
+            body.lock {
+                overflow: hidden;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            .sidebar,
+            .sidebar.open,
+            a.card,
+            .btn {
+                transition: none;
+            }
+        }
+
+        /* Seletor de idioma */
+        .lang-switch {
+            display: inline-flex;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            overflow: hidden;
+            flex: none;
+        }
+
+        .lang-switch button {
+            background: transparent;
+            border: 0;
+            color: var(--text-muted);
+            padding: 0.3rem 0.65rem;
+            font: inherit;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+        }
+
+        .lang-switch button + button {
+            border-left: 1px solid var(--border);
+        }
+
+        .lang-switch button:hover {
+            color: var(--text);
+        }
+
+        .lang-switch button[aria-pressed="true"] {
+            background: rgba(139, 92, 246, 0.2);
+            color: var(--accent-light);
+        }
+
+        .sidebar > .lang-switch {
+            margin: 0 1.5rem 0.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar > .lang-switch {
+                display: none;
+            }
+
+            .topbar .brand {
+                min-width: 0;
+                font-size: 1.05rem;
+            }
+
+            .topbar .lang-switch button {
+                padding: 0.3rem 0.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Barra superior (celular) -->
+    <header class="topbar">
+        <a class="brand" href="#inicio">
+            <span class="logo" role="img" data-i18n-aria="logo" aria-label="Logo do The Division"></span>
+            <span>The Division</span>
+        </a>
+        <div class="lang-switch" role="group" data-i18n-aria="langGroup" aria-label="Idioma">
+            <button type="button" data-lang="pt" aria-pressed="true" lang="pt-BR" aria-label="Português">PT</button>
+            <button type="button" data-lang="en" aria-pressed="false" lang="en" aria-label="English">EN</button>
+            <button type="button" data-lang="zh" aria-pressed="false" lang="zh-CN" aria-label="中文">中文</button>
+        </div>
+        <button class="menu-btn" id="menu-btn" type="button" aria-label="Abrir menu" aria-controls="sidebar" aria-expanded="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 6h16M4 12h16M4 18h16"/></svg>
+        </button>
+    </header>
+    <div class="scrim" id="scrim"></div>
+
+    <!-- Sidebar -->
+    <aside class="sidebar" id="sidebar">
+        <a class="brand" href="#inicio">
+            <span class="logo" role="img" data-i18n-aria="logo" aria-label="Logo do The Division"></span>
+            <span>The Division</span>
+        </a>
+        <div class="lang-switch" role="group" data-i18n-aria="langGroup" aria-label="Idioma">
+            <button type="button" data-lang="pt" aria-pressed="true" lang="pt-BR" aria-label="Português">PT</button>
+            <button type="button" data-lang="en" aria-pressed="false" lang="en" aria-label="English">EN</button>
+            <button type="button" data-lang="zh" aria-pressed="false" lang="zh-CN" aria-label="中文">中文</button>
+        </div>
+        <nav>
+            <a href="#inicio" class="active" data-i18n="nav.home">Início</a>
+            <a href="#sobre" data-i18n="nav.about">Sobre o Mod</a>
+            <a href="#instalar" data-i18n="nav.install">Download e instalação</a>
+
+            <div class="nav-section" data-i18n="nav.dims">Dimensões</div>
+            <a href="#nexus">Nexus</a>
+            <a href="#beginning">The Beginning</a>
+
+            <div class="nav-section" data-i18n="nav.prog">Progressão</div>
+            <a href="#bosses" data-i18n="nav.bosses">Bosses</a>
+            <a href="#gear" data-i18n="nav.gear">Equipamentos</a>
+            <a href="#reactor">Reactor Nexus</a>
+            <a href="#reformulador" data-i18n="nav.reformer">Reformulador de Matéria</a>
+
+            <div class="nav-section" data-i18n="nav.other">Outros</div>
+            <a href="#credits" data-i18n="nav.credits">Créditos</a>
+        </nav>
+    </aside>
+
+    <!-- Conteúdo -->
+    <main class="main">
+
+        <h2 id="inicio" data-i18n="h.title">Bem-vindo à Wiki do The Division</h2>
+        <p data-i18n="h.intro">
+            Um mod Fabric sobre a divisão entre mundos - e o que é preciso para atravessá-la.
+            Esta Wiki documenta as duas novas dimensões, os bosses, a progressão de equipamentos
+            e a história em desenvolvimento.
+        </p>
+
+        <div class="notice" data-i18n="h.notice"><strong>Status:</strong> Alpha inicial. O conteúdo do Overworld está completo e jogável.
+            A dimensão Nexus e The Beginning ainda estão em desenvolvimento ativo.</div>
+
+        <div class="btn-row">
+            <a class="btn" href="https://modrinth.com/mod/the-division" target="_blank" rel="noopener noreferrer" data-i18n="btn.modrinth">Baixar no Modrinth</a>
+            <a class="btn" href="https://www.curseforge.com/minecraft/mc-mods/the-division-beel-berserk/preview" target="_blank" rel="noopener noreferrer" data-i18n="btn.curse">Baixar no CurseForge</a>
+            <a class="btn secondary" href="https://discord.gg/aYmvmtw7S7" target="_blank" rel="noopener noreferrer" data-i18n="btn.discord">Entrar no Discord</a>
+        </div>
+
+        <h3 data-i18n="h.quick">Navegação Rápida</h3>
+        <div class="card-grid">
+            <a href="#nexus" class="card">
+                <h4>🟣 Nexus</h4>
+                <p data-i18n="card.nexus.d">Estruturas futurísticas e um mundo de cidade infinita.</p>
+            </a>
+            <a href="#beginning" class="card">
+                <h4>🌑 The Beginning</h4>
+                <p data-i18n="card.beg.d">Dimensão final corrompida com um buraco negro em meio a um céu azul-pálido.</p>
+            </a>
+            <a href="#bosses" class="card">
+                <h4 data-i18n="card.boss.t">💀 Progressão de Bosses</h4>
+                <p data-i18n="card.boss.d">Bosses que guardam o caminho para o fim.</p>
+            </a>
+            <a href="#gear" class="card">
+                <h4 data-i18n="card.gear.t">⚙️ Linha de Equipamentos</h4>
+                <p data-i18n="card.gear.d">Armas únicas e poderosas.</p>
+            </a>
+        </div>
+
+        <h3 id="sobre" data-i18n="about.title">Sobre o Mod</h3>
+        <div class="table-wrap">
+            <table>
+                <tr><th data-i18n="about.th1">Atributo</th><th data-i18n="about.th2">Detalhe</th></tr>
+                <tr><td data-i18n="about.mcver">Versão do Minecraft</td><td>Java Edition 1.20.1</td></tr>
+                <tr><td data-i18n="about.platform">Plataforma</td><td>Fabric</td></tr>
+                <tr><td data-i18n="about.env">Ambiente</td><td data-i18n="about.env.v">Cliente e Servidor</td></tr>
+                <tr><td data-i18n="about.deps">Dependências</td><td>Fabric API, REI, GeckoLib</td></tr>
+                <tr><td data-i18n="about.author">Autor</td><td data-i18n="about.author.v">satan.csproj (código, texturas, modelos 3D)</td></tr>
+                <tr><td data-i18n="about.collab">Colaboração</td><td data-i18n="about.collab.v">.kresreb. (história e conceito)</td></tr>
+                <tr><td data-i18n="about.discord">Servidor do Discord</td><td><a class="inline" href="https://discord.gg/aYmvmtw7S7" target="_blank" rel="noopener noreferrer">discord.gg/aYmvmtw7S7</a></td></tr>
+            </table>
+        </div>
+
+        <h3 id="instalar" data-i18n="inst.title">Download e instalação</h3>
+        <p data-i18n="inst.p1">O The Division está disponível em duas plataformas:</p>
+        <div class="btn-row">
+            <a class="btn" href="https://modrinth.com/mod/the-division" target="_blank" rel="noopener noreferrer">Modrinth</a>
+            <a class="btn" href="https://www.curseforge.com/minecraft/mc-mods/the-division-beel-berserk/preview" target="_blank" rel="noopener noreferrer">CurseForge</a>
+        </div>
+        <p data-i18n="inst.p2">Para jogar, você precisa do Minecraft Java Edition 1.20.1 com Fabric e destes mods instalados:</p>
+        <ul>
+            <li>Fabric API</li>
+            <li>REI</li>
+            <li>GeckoLib</li>
+        </ul>
+
+        <h3 id="nexus">Nexus</h3>
+        <p data-i18n="nexus.p">
+            Uma dimensão roxa com estruturas futurísticas que fazem o mundo parecer uma cidade infinita.
+            Ainda em desenvolvimento ativo, com bugs e recursos faltantes esperados.
+        </p>
+
+        <h3 id="beginning">The Beginning</h3>
+        <p data-i18n="beg.p">
+            A dimensão final corrompida, marcada por um buraco negro azul-pálido no céu e
+            grama amarela infinita ao redor de uma única árvore seca. A confrontação final
+            acontece aqui - sem spoilers.
+        </p>
+
+        <h3 id="bosses" data-i18n="bosses.title">Bosses</h3>
+        <p data-i18n="bosses.intro">
+            No momento temos 4 bosses no jogo, e um deles é opcional, mas altamente recomendado de enfrentar.
+        </p>
+        <div class="card-grid">
+            <article class="card boss">
+                <span class="badge" data-i18n="badge.first">1º boss</span>
+                <h4 data-i18n="boss.flash.n">Flash Reverso</h4>
+                <p data-i18n="boss.flash.d">
+                    Deve ser o primeiro boss a ser enfrentado. É o mais fraco entre os 3 primeiros bosses do Overworld
+                    e dropa uma armadura essencial na sua jornada pelo The Division.
+                </p>
+            </article>
+            <article class="card boss">
+                <span class="badge" data-i18n="badge.overworld">Overworld</span>
+                <h4 data-i18n="boss.loki.n">Loki</h4>
+                <p data-i18n="boss.loki.d">
+                    Boss perigoso, escondido no topo do edifício mais alto do Overworld.
+                    Esteja altamente preparado: as recompensas dele são de extrema importância
+                    para enfrentar o próximo boss.
+                </p>
+            </article>
+            <article class="card boss">
+                <span class="badge" data-i18n="badge.strongest">Mais forte do Overworld</span>
+                <h4 data-i18n="boss.red.n">Red Skull</h4>
+                <p data-i18n="boss.red.d">
+                    Aquele que desejava ascender além da humanidade: pesquisador-chefe da HIDRA, portador do Tesseract
+                    e à procura dos irmãos antagônicos que definem tudo que existe e não existe.
+                    Certifique-se de estar pronto para o próximo passo antes de enfrentar o diabo em pessoa.
+                </p>
+            </article>
+            <article class="card boss">
+                <span class="badge" data-i18n="badge.optional">Opcional</span>
+                <h4>Melodyne</h4>
+                <p data-i18n="boss.mel.d">
+                    Uma andróide feita para cantar e fazer as pessoas felizes com sua canção, mas que, no fim,
+                    perdeu a fé no próprio coração e em todo o resto. Vale enfrentá-la: ela dropa uma arma poderosa.
+                </p>
+            </article>
+        </div>
+
+        <h3 id="gear" data-i18n="gear.title">Equipamentos</h3>
+        <p data-i18n="gear.intro">As principais armas presentes no The Division:</p>
+        <div class="table-wrap">
+            <table class="wide">
+                <tr><th data-i18n="gear.th1">Item</th><th data-i18n="gear.th2">Dano</th><th data-i18n="gear.th3">Detalhes</th></tr>
+                <tr>
+                    <td><strong>God Killer Sword</strong></td>
+                    <td>60+</td>
+                    <td data-i18n="gear.gks.d">Ótima para enfrentar os primeiros bosses, com velocidade de ataque incrível.
+                        Crafting com Ouro Evoluído e Onexiron, possível somente no Reactor Nexus.</td>
+                </tr>
+                <tr>
+                    <td><strong data-i18n="gear.ti.n">Espada de Titânio</strong></td>
+                    <td>50+</td>
+                    <td data-i18n="gear.ti.d">Semelhante à God Killer Sword, fácil de fazer e prática para os primeiros desafios.
+                        Crafting possível somente no Reactor Nexus.</td>
+                </tr>
+                <tr>
+                    <td><strong data-i18n="gear.mj.n">Mjölnir</strong></td>
+                    <td>50+</td>
+                    <td data-i18n="gear.mj.d">Pode ser conseguido na torre do Loki ou feito com Uru, uma nova liga de metal criada
+                        especialmente para os equipamentos do Thor. O crafting é possível somente no Reactor Nexus.</td>
+                </tr>
+                <tr>
+                    <td><strong data-i18n="gear.sh.n">Escudo do Capitão América</strong></td>
+                    <td>~40</td>
+                    <td data-i18n="gear.sh.d">Boa arma inicial, mas mais fraca que as outras.</td>
+                </tr>
+                <tr>
+                    <td><strong>Hawkeye Bow</strong></td>
+                    <td>—</td>
+                    <td data-i18n="gear.bow.d">O arco mais rápido e prático de usar, ótimo contra Zombies Cibernéticos e Golems do Vazio.</td>
+                </tr>
+                <tr>
+                    <td><strong>Creatio Secundum Bereshit</strong><br><strong>Finis Secundum Nihil</strong></td>
+                    <td>1000</td>
+                    <td data-i18n="gear.end.d">Espadas end-game. Atualmente não é possível obtê-las no modo survival.</td>
+                </tr>
+            </table>
+        </div>
+
+        <h3 id="reactor">Reactor Nexus</h3>
+        <p data-i18n="reactor.p">
+            Um bloco customizado de crafting/processamento com receitas próprias e integração com REI.
+            Ele é essencial para fazer os itens especiais das armaduras de médio e grande porte do jogo.
+        </p>
+
+        <h3 id="reformulador" data-i18n="reformer.title">Reformulador de Matéria</h3>
+        <p data-i18n="reformer.p">
+            Uma bancada de trabalho feita para aprimorar equipamentos. No momento, ela aprimora somente espadas.
+        </p>
+        <ul>
+            <li data-i18n="reformer.li1"><strong>Combustível:</strong> Coração Ancestral nível 1.</li>
+            <li data-i18n="reformer.li2"><strong>Buffs nas espadas:</strong> +10% de dano e +10% de velocidade de ataque.</li>
+        </ul>
+
+        <h3 id="credits" data-i18n="credits.title">Créditos</h3>
+        <p data-i18n="credits.body">
+            <strong>Desenvolvimento:</strong> satan.csproj<br>
+            <strong>História &amp; Conceito:</strong> .kresreb.<br>
+            <strong>Contato:</strong> Discord - satan.csproj / .kresreb.
+        </p>
+    </main>
+
+    <script>
+        (function () {
+            /* ---------- Traduções (o português é o texto original da página) ---------- */
+            var LANG_ATTR = { pt: 'pt-BR', en: 'en', zh: 'zh-CN' };
+
+            var ARIA = {
+                pt: { logo: 'Logo do The Division', langGroup: 'Idioma', menuOpen: 'Abrir menu', menuClose: 'Fechar menu' },
+                en: { logo: 'The Division logo', langGroup: 'Language', menuOpen: 'Open menu', menuClose: 'Close menu' },
+                zh: { logo: 'The Division 徽标', langGroup: '语言', menuOpen: '打开菜单', menuClose: '关闭菜单' }
+            };
+
+            var DICT = {
+                en: {
+                    'nav.home': 'Home',
+                    'nav.about': 'About the Mod',
+                    'nav.install': 'Download and installation',
+                    'nav.dims': 'Dimensions',
+                    'nav.prog': 'Progression',
+                    'nav.bosses': 'Bosses',
+                    'nav.gear': 'Gear',
+                    'nav.reformer': 'Matter Reformer',
+                    'nav.other': 'Other',
+                    'nav.credits': 'Credits',
+                    'h.title': 'Welcome to The Division Wiki',
+                    'h.intro': 'A Fabric mod about the divide between worlds, and what it takes to cross it. This wiki documents the two new dimensions, the bosses, the gear progression, and the story that is still in development.',
+                    'h.notice': '<strong>Status:</strong> Early alpha. The Overworld content is complete and playable. The Nexus dimension and The Beginning are still under active development.',
+                    'btn.modrinth': 'Download on Modrinth',
+                    'btn.curse': 'Download on CurseForge',
+                    'btn.discord': 'Join the Discord',
+                    'h.quick': 'Quick navigation',
+                    'card.nexus.d': 'Futuristic structures and a world that feels like an endless city.',
+                    'card.beg.d': 'A corrupted final dimension with a black hole in a pale blue sky.',
+                    'card.boss.t': '💀 Boss Progression',
+                    'card.boss.d': 'Bosses that guard the path to the end.',
+                    'card.gear.t': '⚙️ Gear Line',
+                    'card.gear.d': 'Unique and powerful weapons.',
+                    'about.title': 'About the Mod',
+                    'about.th1': 'Attribute',
+                    'about.th2': 'Detail',
+                    'about.mcver': 'Minecraft version',
+                    'about.platform': 'Platform',
+                    'about.env': 'Environment',
+                    'about.env.v': 'Client and Server',
+                    'about.deps': 'Dependencies',
+                    'about.author': 'Author',
+                    'about.author.v': 'satan.csproj (code, textures, 3D models)',
+                    'about.collab': 'Collaboration',
+                    'about.collab.v': '.kresreb. (story and concept)',
+                    'about.discord': 'Discord server',
+                    'inst.title': 'Download and installation',
+                    'inst.p1': 'The Division is available on two platforms:',
+                    'inst.p2': 'To play, you need Minecraft Java Edition 1.20.1 with Fabric and these mods installed:',
+                    'nexus.p': 'A purple dimension with futuristic structures that make the world feel like an endless city. Still under active development, so bugs and missing features are expected.',
+                    'beg.p': 'The corrupted final dimension, marked by a pale blue black hole in the sky and endless yellow grass around a single withered tree. The final confrontation takes place here, no spoilers.',
+                    'bosses.title': 'Bosses',
+                    'bosses.intro': 'There are currently 4 bosses in the game, and one of them is optional but highly recommended.',
+                    'badge.first': '1st boss',
+                    'badge.overworld': 'Overworld',
+                    'badge.strongest': 'Strongest in the Overworld',
+                    'badge.optional': 'Optional',
+                    'boss.flash.n': 'Reverse-Flash',
+                    'boss.flash.d': 'The first boss you should face. He is the weakest of the first 3 Overworld bosses and drops an armor that is essential for your journey through The Division.',
+                    'boss.loki.n': 'Loki',
+                    'boss.loki.d': 'A dangerous boss hidden at the top of the tallest building in the Overworld. Go in well prepared: his rewards are extremely important for facing the next boss.',
+                    'boss.red.n': 'Red Skull',
+                    'boss.red.d': 'The one who wished to ascend beyond humanity: HYDRA\'s chief researcher, wielder of the Tesseract, and in search of the antagonistic brothers who define everything that exists and does not exist. Make sure you are ready for the next step before facing the devil himself.',
+                    'boss.mel.d': 'An android built to sing and make people happy with her songs, but who, in the end, lost faith in her own heart and in everything else. Worth fighting: she drops a powerful weapon.',
+                    'gear.title': 'Gear',
+                    'gear.intro': 'The main weapons in The Division:',
+                    'gear.th1': 'Item',
+                    'gear.th2': 'Damage',
+                    'gear.th3': 'Details',
+                    'gear.gks.d': 'Great for the first bosses, with incredible attack speed. Crafted with Evolved Gold and Onexiron, only possible at the Reactor Nexus.',
+                    'gear.ti.n': 'Titanium Sword',
+                    'gear.ti.d': 'Similar to the God Killer Sword, easy to make and handy for the first challenges. Can only be crafted at the Reactor Nexus.',
+                    'gear.mj.n': 'Mjölnir',
+                    'gear.mj.d': 'Can be obtained in Loki\'s tower or crafted with Uru, a new metal alloy made especially for Thor\'s gear. Crafting is only possible at the Reactor Nexus.',
+                    'gear.sh.n': 'Captain America\'s Shield',
+                    'gear.sh.d': 'A good starter weapon, but weaker than the others.',
+                    'gear.bow.d': 'The fastest and most practical bow to use, great against Cyber Zombies and Void Golems.',
+                    'gear.end.d': 'End-game swords. Currently not obtainable in survival mode.',
+                    'reactor.p': 'A custom crafting/processing block with its own recipes and REI integration. It is essential for making the special items for the game\'s medium and large armors.',
+                    'reformer.title': 'Matter Reformer',
+                    'reformer.p': 'A workbench built to upgrade equipment. For now, it only upgrades swords.',
+                    'reformer.li1': '<strong>Fuel:</strong> Ancestral Heart level 1.',
+                    'reformer.li2': '<strong>Sword buffs:</strong> +10% damage and +10% attack speed.',
+                    'credits.title': 'Credits',
+                    'credits.body': '<strong>Development:</strong> satan.csproj<br><strong>Story &amp; Concept:</strong> .kresreb.<br><strong>Contact:</strong> Discord - satan.csproj / .kresreb.'
+                },
+                zh: {
+                    'nav.home': '首页',
+                    'nav.about': '关于模组',
+                    'nav.install': '下载与安装',
+                    'nav.dims': '维度',
+                    'nav.prog': '游戏进程',
+                    'nav.bosses': 'BOSS',
+                    'nav.gear': '装备',
+                    'nav.reformer': '物质重塑台',
+                    'nav.other': '其他',
+                    'nav.credits': '致谢',
+                    'h.title': '欢迎来到 The Division 维基',
+                    'h.intro': '这是一款关于世界之间的分隔，以及跨越它所需代价的 Fabric 模组。本维基记录了两个全新维度、BOSS、装备进阶，以及仍在开发中的剧情。',
+                    'h.notice': '<strong>状态：</strong>早期 Alpha 版本。主世界内容已完成，可以正常游玩。Nexus 维度和 The Beginning 仍在积极开发中。',
+                    'btn.modrinth': '在 Modrinth 下载',
+                    'btn.curse': '在 CurseForge 下载',
+                    'btn.discord': '加入 Discord',
+                    'h.quick': '快速导航',
+                    'card.nexus.d': '未来感十足的建筑，以及一座望不到尽头的城市般的世界。',
+                    'card.beg.d': '被侵蚀的最终维度，淡蓝色的天空中悬着一个黑洞。',
+                    'card.boss.t': '💀 BOSS 进程',
+                    'card.boss.d': '把守通往终点之路的 BOSS。',
+                    'card.gear.t': '⚙️ 装备系列',
+                    'card.gear.d': '独一无二的强力武器。',
+                    'about.title': '关于模组',
+                    'about.th1': '属性',
+                    'about.th2': '详情',
+                    'about.mcver': 'Minecraft 版本',
+                    'about.platform': '平台',
+                    'about.env': '运行环境',
+                    'about.env.v': '客户端与服务端',
+                    'about.deps': '前置模组',
+                    'about.author': '作者',
+                    'about.author.v': 'satan.csproj（代码、材质、3D 模型）',
+                    'about.collab': '合作',
+                    'about.collab.v': '.kresreb.（剧情与概念）',
+                    'about.discord': 'Discord 服务器',
+                    'inst.title': '下载与安装',
+                    'inst.p1': 'The Division 已在以下两个平台发布：',
+                    'inst.p2': '游玩需要 Minecraft Java 版 1.20.1，并安装 Fabric 以及以下模组：',
+                    'nexus.p': '一个紫色维度，未来风格的建筑让整个世界仿佛一座无尽的城市。目前仍在积极开发中，可能存在漏洞和缺失的内容。',
+                    'beg.p': '被侵蚀的最终维度，天空中悬着一个淡蓝色的黑洞，无尽的黄色草地环绕着一棵孤零零的枯树。最终对决就发生在这里，不剧透。',
+                    'bosses.title': 'BOSS',
+                    'bosses.intro': '目前游戏中共有 4 个 BOSS，其中一个是可选的，但强烈建议挑战。',
+                    'badge.first': '第 1 个 BOSS',
+                    'badge.overworld': '主世界',
+                    'badge.strongest': '主世界最强',
+                    'badge.optional': '可选',
+                    'boss.flash.n': 'Reverse-Flash（反闪电侠）',
+                    'boss.flash.d': '应当第一个挑战的 BOSS。他是主世界前 3 个 BOSS 中最弱的，会掉落一件对你在 The Division 中的旅程至关重要的护甲。',
+                    'boss.loki.n': 'Loki（洛基）',
+                    'boss.loki.d': '危险的 BOSS，藏身于主世界最高建筑的顶端。请做好充分准备：他的奖励对于挑战下一个 BOSS 极为重要。',
+                    'boss.red.n': 'Red Skull（红骷髅）',
+                    'boss.red.d': '他渴望超越人类的极限：九头蛇（HYDRA）的首席研究员，宇宙魔方（Tesseract）的持有者，正在寻找那对定义了一切存在与不存在之物的对立兄弟。在面对这位恶魔本人之前，请确保你已为下一步做好准备。',
+                    'boss.mel.d': '一个为歌唱、用歌声带给人们快乐而制造的仿生人，但最终，她对自己的内心以及其他一切都失去了信心。值得挑战：她会掉落一件强力武器。',
+                    'gear.title': '装备',
+                    'gear.intro': 'The Division 中的主要武器：',
+                    'gear.th1': '物品',
+                    'gear.th2': '伤害',
+                    'gear.th3': '详情',
+                    'gear.gks.d': '适合挑战前几个 BOSS，攻击速度惊人。使用 Evolved Gold 和 Onexiron 合成，只能在 Reactor Nexus 中进行。',
+                    'gear.ti.n': 'Titanium Sword（钛剑）',
+                    'gear.ti.d': '与 God Killer Sword 相似，容易制作，适合前期挑战。只能在 Reactor Nexus 中合成。',
+                    'gear.mj.n': 'Mjölnir（雷神之锤）',
+                    'gear.mj.d': '可在洛基之塔中获得，或使用 Uru 合成，这是专为雷神装备打造的全新金属合金。合成只能在 Reactor Nexus 中进行。',
+                    'gear.sh.n': 'Captain America\'s Shield（美国队长之盾）',
+                    'gear.sh.d': '不错的起步武器，但比其他武器弱。',
+                    'gear.bow.d': '最快、最好用的弓，非常适合对付 Cyber Zombies（赛博僵尸）和 Void Golems（虚空傀儡）。',
+                    'gear.end.d': '终局之剑。目前无法在生存模式中获得。',
+                    'reactor.p': '一个自定义的合成/加工方块，拥有专属配方并支持 REI。制作游戏中中型和大型护甲的特殊物品时，它不可或缺。',
+                    'reformer.title': '物质重塑台',
+                    'reformer.p': '用于强化装备的工作台。目前只能强化剑。',
+                    'reformer.li1': '<strong>燃料：</strong>先祖之心 1 级。',
+                    'reformer.li2': '<strong>剑的加成：</strong>伤害 +10%，攻击速度 +10%。',
+                    'credits.title': '致谢',
+                    'credits.body': '<strong>开发：</strong>satan.csproj<br><strong>剧情与概念：</strong>.kresreb.<br><strong>联系方式：</strong>Discord - satan.csproj / .kresreb.'
+                }
+            };
+
+            var textNodes = document.querySelectorAll('[data-i18n]');
+            var ariaNodes = document.querySelectorAll('[data-i18n-aria]');
+            var langButtons = document.querySelectorAll('.lang-switch button');
+            var sidebar = document.getElementById('sidebar');
+            var btn = document.getElementById('menu-btn');
+            var scrim = document.getElementById('scrim');
+            var lang = 'pt';
+
+            // guarda o texto original em português
+            var PT = {};
+            textNodes.forEach(function (el) { PT[el.getAttribute('data-i18n')] = el.innerHTML; });
+
+            function menuLabel() {
+                return ARIA[lang][sidebar.classList.contains('open') ? 'menuClose' : 'menuOpen'];
+            }
+
+            function setLang(next, save) {
+                if (!LANG_ATTR[next]) next = 'pt';
+                lang = next;
+                document.documentElement.lang = LANG_ATTR[next];
+                textNodes.forEach(function (el) {
+                    var key = el.getAttribute('data-i18n');
+                    var table = DICT[next];
+                    el.innerHTML = (table && table[key] !== undefined) ? table[key] : PT[key];
+                });
+                ariaNodes.forEach(function (el) {
+                    el.setAttribute('aria-label', ARIA[next][el.getAttribute('data-i18n-aria')]);
+                });
+                langButtons.forEach(function (b) {
+                    b.setAttribute('aria-pressed', b.getAttribute('data-lang') === next ? 'true' : 'false');
+                });
+                btn.setAttribute('aria-label', menuLabel());
+                if (save) {
+                    try { localStorage.setItem('td-wiki-lang', next); } catch (e) {}
+                }
+            }
+
+            langButtons.forEach(function (b) {
+                b.addEventListener('click', function () { setLang(b.getAttribute('data-lang'), true); });
+            });
+
+            // idioma inicial: ?lang= na URL > escolha salva > idioma do navegador > português
+            var initial = null;
+            try { initial = new URLSearchParams(window.location.search).get('lang'); } catch (e) {}
+            if (!initial) {
+                try { initial = localStorage.getItem('td-wiki-lang'); } catch (e) {}
+            }
+            if (!initial) {
+                var nav = (navigator.language || 'pt').toLowerCase();
+                initial = nav.indexOf('zh') === 0 ? 'zh' : (nav.indexOf('en') === 0 ? 'en' : 'pt');
+            }
+            if (initial !== 'pt') setLang(initial, false);
+
+            /* ---------- Menu no celular ---------- */
+            function setOpen(open) {
+                sidebar.classList.toggle('open', open);
+                scrim.classList.toggle('show', open);
+                document.body.classList.toggle('lock', open);
+                btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+                btn.setAttribute('aria-label', menuLabel());
+            }
+
+            btn.addEventListener('click', function () {
+                setOpen(!sidebar.classList.contains('open'));
+            });
+            scrim.addEventListener('click', function () { setOpen(false); });
+            document.addEventListener('keydown', function (e) {
+                if (e.key === 'Escape') setOpen(false);
+            });
+            sidebar.querySelectorAll('nav a').forEach(function (a) {
+                a.addEventListener('click', function () { setOpen(false); });
+            });
+
+            /* ---------- Destaca no menu a seção que está na tela ---------- */
+            var links = [];
+            sidebar.querySelectorAll('nav a').forEach(function (a) {
+                var el = document.getElementById(a.getAttribute('href').slice(1));
+                if (el) links.push({ a: a, el: el });
+            });
+
+            var ticking = false;
+            function update() {
+                ticking = false;
+                var y = window.scrollY + 140;
+                var current = links[0];
+                links.forEach(function (l) {
+                    if (l.el.getBoundingClientRect().top + window.scrollY <= y) current = l;
+                });
+                if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) {
+                    current = links[links.length - 1];
+                }
+                links.forEach(function (l) {
+                    var on = l === current;
+                    l.a.classList.toggle('active', on);
+                    if (on) l.a.setAttribute('aria-current', 'true');
+                    else l.a.removeAttribute('aria-current');
+                });
+            }
+
+            window.addEventListener('scroll', function () {
+                if (!ticking) {
+                    ticking = true;
+                    requestAnimationFrame(update);
+                }
+            }, { passive: true });
+            update();
+        })();
+    </script>
+
+</body>
+</html>
+dade de ataque a mais.
+        </p>
+
+        <h3 id="credits">Créditos</h3>
+        <p>
+            <strong>Desenvolvimento:</strong> satan.csproj<br>
+            <strong>História & Conceito:</strong> .kresreb<br>
+            <strong>Contato:</strong> Discord - satan.csproj / .kresreb
+        </p>
+    </main>
+
+</body>
+</html>
